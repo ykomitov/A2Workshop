@@ -4,28 +4,30 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="form-group">
                 <label class="control-label" for="inputSmall">Search</label>
-                <input class="form-control input-sm" id="inputSmall" type="text">
+                <input class="form-control input-sm" name="search" type="text">
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-3 col-md-offset-3">
             <div class="form-group">
                 <label for="select" class="control-label">Sort</label>
-                <select class="form-control" id="select">
-                    <option>Rating</option>
-                    <option>Title</option>
-                    <option>Year</option>
+                <select class="form-control" #sv (change)="sortBy(sv.value)">
+                    <option value="Rating">Rating</option>
+                    <option value="Title">Title</option>
+                    <option value="Year">Year</option>
                 </select>
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 <label for="select" class="control-label">Order</label>
-                <select class="form-control" id="select">
-                    <option>Descending</option>
-                    <option>Ascending</option>
+                <select class="form-control" #st (change)="sortType(st.value)">
+                    <option value="desc">Descending</option>
+                    <option value="asc">Ascending</option>
                 </select>
             </div>
         </div>
     </div>
-    <movies-list></movies-list>
+    <movies-list [sort]="sortObj"></movies-list>
 </div>

@@ -7,11 +7,21 @@ import { Title } from '@angular/platform-browser';
 })
 
 export class AppComponent {
+
+    sortObj = {
+        property: 'ImdbRating',
+        type: 'desc'
+    }
+
     constructor(private titleService: Title) {
         this.titleService.setTitle('Movies Workshop');
     }
 
-    // public setTitle(newTitle: string) {
-    //     this.titleService.setTitle(newTitle);
-    // }
+    sortBy(property: any) {
+        this.sortObj.property = property;
+    }
+
+    sortType(type: any) {
+        this.sortObj.type = type;
+    }
 }

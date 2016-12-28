@@ -12,6 +12,4 @@ import { Movie } from './../core/models/movie';
 
 export class MovieShortComponent {
     @Input() movie: Movie;
-
-
 }

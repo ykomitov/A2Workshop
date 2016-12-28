@@ -1,6 +1,8 @@
 import {
     Component,
-    OnInit
+    OnInit,
+    DoCheck,
+    Input
 } from '@angular/core';
 
 import {
@@ -12,17 +14,20 @@ import { Observable } from 'rxjs';
 import 'rxjs';
 
 import { Movie } from './../core/models/movie';
+import { SortPipe } from './../core/pipes/SortPipe';
 
 @Component({
     selector: 'movies-list',
-    templateUrl: './movies-list.component.html'
+    templateUrl: './movies-list.component.html',
+    providers: [SortPipe]
 })
 
-export class MoviesListComponent implements OnInit {
+export class MoviesListComponent implements OnInit, DoCheck {
 
     movies: Movie[];
+    @Input() sort: any;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private pipeSort: SortPipe) { }
 
     ngOnInit() {
         this.http.get('./../data/movies.json')
@@ -57,4 +62,13 @@ export class MoviesListComponent implements OnInit {
             })
             .subscribe(movies => this.movies = movies);
     }
+
+    ngDoCheck() {
+        this.transformMovies(this.sort);
+    }
+
+    transformMovies(sort: any) {
+        this.pipeSort.transform(this.movies, sort.property, sort.type);
+    }
 }
+

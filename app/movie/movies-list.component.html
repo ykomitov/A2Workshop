@@ -9,6 +9,6 @@
         </tr>
     </thead>
     <tbody>
-        <tr mvdb-movie-short *ngFor="let movie of (movies | sort:'Year':'desc')" [movie]="movie"></tr>
+        <tr mvdb-movie-short *ngFor="let movie of movies" [movie]="movie"></tr>
     </tbody>
 </table>
