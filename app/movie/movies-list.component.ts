@@ -15,19 +15,21 @@ import 'rxjs';
 
 import { Movie } from './../core/models/movie';
 import { SortPipe } from './../core/pipes/SortPipe';
+import { SearchPipe } from './../core/pipes/SearchPipe';
 
 @Component({
     selector: 'movies-list',
     templateUrl: './movies-list.component.html',
-    providers: [SortPipe]
+    providers: [SortPipe, SearchPipe]
 })
 
 export class MoviesListComponent implements OnInit, DoCheck {
 
     movies: Movie[];
+    moviesOriginal: Movie[];
     @Input() sort: any;
 
-    constructor(private http: Http, private pipeSort: SortPipe) { }
+    constructor(private http: Http, private pipeSort: SortPipe, private pipeSearch: SearchPipe) { }
 
     ngOnInit() {
         this.http.get('./../data/movies.json')
@@ -64,11 +66,23 @@ export class MoviesListComponent implements OnInit, DoCheck {
     }
 
     ngDoCheck() {
+        if (this.sort.search !== '' || this.moviesOriginal) {
+            if (!this.moviesOriginal) {
+                this.moviesOriginal = this.movies;
+            }
+
+            this.movies = this.searchMoviesTitle(this.sort.search);
+        }
+
         this.transformMovies(this.sort);
     }
 
     transformMovies(sort: any) {
         this.pipeSort.transform(this.movies, sort.property, sort.type);
+    }
+
+    searchMoviesTitle(title: any) {
+        return this.pipeSearch.transform(this.moviesOriginal, title);
     }
 }
 

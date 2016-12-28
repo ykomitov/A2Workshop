@@ -9,6 +9,7 @@ import { MovieShortComponent } from './movie/movie-short.component';
 import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { SortPipe } from './core/pipes/SortPipe';
+import { SearchPipe } from './core/pipes/SearchPipe';
 
 @NgModule({
     imports: [BrowserModule, HttpModule],
@@ -16,7 +17,8 @@ import { SortPipe } from './core/pipes/SortPipe';
         AppComponent, 
         MoviesListComponent, 
         MovieShortComponent,
-        SortPipe],
+        SortPipe,
+        SearchPipe],
     bootstrap: [AppComponent],
     providers: [Title]
 })

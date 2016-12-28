@@ -10,7 +10,8 @@ export class AppComponent {
 
     sortObj = {
         property: 'ImdbRating',
-        type: 'desc'
+        type: 'desc',
+        search: ''
     }
 
     constructor(private titleService: Title) {
@@ -23,5 +24,9 @@ export class AppComponent {
 
     sortType(type: any) {
         this.sortObj.type = type;
+    }
+
+    searchForTitle(title: any){
+        this.sortObj.search = title;
     }
 }
