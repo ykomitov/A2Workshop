@@ -12,26 +12,28 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { OmdbSearchComponent } from './omdbSearch/omdb-search.component';
 
+import { OmdbMovieService } from './core/services/omdb.service';
+
 import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { SortPipe } from './core/pipes/SortPipe';
 import { SearchPipe } from './core/pipes/SearchPipe';
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'omdb', component: OmdbSearchComponent },
-  { path: '**', redirectTo: '/home' }
+    { path: 'home', component: HomeComponent },
+    { path: 'omdb', component: OmdbSearchComponent },
+    { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({
     imports: [
         RouterModule.forRoot(appRoutes),
-        BrowserModule, 
+        BrowserModule,
         HttpModule
-        ],
+    ],
     declarations: [
-        AppComponent, 
-        MoviesListComponent, 
+        AppComponent,
+        MoviesListComponent,
         MovieShortComponent,
         HeaderComponent,
         FooterComponent,
@@ -40,7 +42,7 @@ const appRoutes: Routes = [
         SortPipe,
         SearchPipe],
     bootstrap: [AppComponent],
-    providers: [Title]
+    providers: [Title, OmdbMovieService]
 })
 
 
