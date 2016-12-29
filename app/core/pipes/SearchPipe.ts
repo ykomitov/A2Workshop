@@ -11,6 +11,6 @@ export class SearchPipe implements PipeTransform {
             return movies;
         }
 
-        return movies.filter(m => m.Title.toLowerCase().includes(search));
+        return movies.filter(m => m.Title.toLowerCase().includes(search.toLowerCase()));
     }
 };

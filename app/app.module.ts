@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { MoviesListComponent } from './movie/movies-list.component';
 import { MovieShortComponent } from './movie/movie-short.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 
@@ -17,6 +19,8 @@ import { SearchPipe } from './core/pipes/SearchPipe';
         AppComponent, 
         MoviesListComponent, 
         MovieShortComponent,
+        HeaderComponent,
+        FooterComponent,
         SortPipe,
         SearchPipe],
     bootstrap: [AppComponent],
