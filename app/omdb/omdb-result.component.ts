@@ -9,8 +9,8 @@ import { OmdbSearchResult } from './../core/models/omdbSearchResult';
 export class OmdbResultComponent implements DoCheck {
     @Input() searchResult: OmdbSearchResult;
     @Input() searchObj: any;
-    @Output() pageChanged = new EventEmitter<string>();
-    totalPages: any;
+    @Output() pageChanged = new EventEmitter<number>();
+    totalPages: number;
 
     ngDoCheck() {
         if (this.searchResult) {
@@ -18,8 +18,15 @@ export class OmdbResultComponent implements DoCheck {
         }
     }
 
-    changePage(newPage: string) {
+    changePage(newPage: number) {
         console.log(newPage);
-        this.pageChanged.emit(newPage);
+        let input = newPage;
+        if (input < 1) {
+            input = 1;
+        } else if (input > this.totalPages) {
+            input = this.totalPages;
+        }
+
+        this.pageChanged.emit(input);
     }
 }
