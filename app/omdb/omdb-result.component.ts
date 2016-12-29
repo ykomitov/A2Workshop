@@ -19,7 +19,6 @@ export class OmdbResultComponent implements DoCheck {
     }
 
     changePage(newPage: number) {
-        console.log(newPage);
         let input = newPage;
         if (input < 1) {
             input = 1;

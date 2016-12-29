@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="searchResult.response" class="row">
     <ul class="nav nav-pills">
         <li>Total results <span class="badge">{{searchResult.totalResult}}</span></li>
     </ul>
@@ -25,12 +25,15 @@
         </tbody>
     </table>
 </div>
-<div class="row">
+<div *ngIf="searchResult.response" class="row">
     <div class="col-md-3 col-md-offset-5">
         <ul class="pagination">
             <li><a class="active" (click)="changePage(searchObj.page-1)">&laquo;</a></li>
             <li><a class="active">Page {{searchObj.page}} of {{totalPages}}</a></li>
-            <li><a class="active"(click)="changePage(searchObj.page+1)">&raquo;</a></li>
+            <li><a class="active" (click)="changePage(searchObj.page+1)">&raquo;</a></li>
         </ul>
     </div>
+</div>
+<div *ngIf="!searchResult.response" class="panel panel-default">
+    <div class="panel-body text-center">No results found!</div>
 </div>

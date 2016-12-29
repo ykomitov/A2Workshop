@@ -28,8 +28,6 @@ export class OmdbSearchComponent {
     }
 
     pageChanged(newPage: number) {
-
-        console.log('page request: ' + newPage);
         this.searchObj.page = newPage;
         this.movieService.searchMovies(this.searchObj)
             .subscribe(res => this.searchResult = res);

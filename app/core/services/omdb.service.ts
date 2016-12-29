@@ -23,19 +23,22 @@ export class OmdbMovieService {
             .map((response) => response.json())
             .map((res: any) => {
                 let resultMovies: OmdbMovie[] = [];
-                if (res.Response) {
+                console.log(res);
+                if (res.Response && res.Response !== 'False') {
                     res.Search.forEach((m: any) => {
                         resultMovies.push(
                             new OmdbMovie(
                                 m.imdbID,
                                 m.Title,
-                                m.Year || '',                            
+                                m.Year || '',
                                 m.Poster || '',
                                 m.Type || '')
                         );
                     });
 
                     return new OmdbSearchResult(resultMovies, res.totalResults, res.Response);
+                } else {
+                    return new OmdbSearchResult(resultMovies, 0, false);
                 }
             });
     }
