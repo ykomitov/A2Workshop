@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { OmdbMovieService } from './../core/services/omdb.service';
@@ -9,25 +9,25 @@ import { OmdbSearchResult } from './../core/models/omdbSearchResult';
     templateUrl: './omdb-search.component.html'
 })
 
-export class OmdbSearchComponent implements OnInit, DoCheck {
+export class OmdbSearchComponent {
     searchResult: OmdbSearchResult;
+    searchObj: any;
 
     constructor(private titleService: Title, private movieService: OmdbMovieService) {
         this.titleService.setTitle('OMDb Movies');
     }
 
-    ngOnInit() {
-        this.movieService.searchMovies({})
+    searchOmdb(title: string) {
+        this.searchObj = {
+            title: title,
+            page: 1
+        }
+
+        this.movieService.searchMovies(this.searchObj)
             .subscribe(res => this.searchResult = res);
     }
 
-    ngDoCheck() {
-        if (this.searchResult) {
-            console.log(this.searchResult);
-        }
-    }
-
-    searchOmdb(){
-        console.log('search clicked');
+    pageChanged(newPage: string) {
+        console.log('page request: ' + newPage);
     }
 }

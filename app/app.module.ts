@@ -10,7 +10,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { HomeComponent } from './home/home.component';
-import { OmdbSearchComponent } from './omdbSearch/omdb-search.component';
+import { OmdbSearchComponent } from './omdb/omdb-search.component';
+import { OmdbResultComponent } from './omdb/omdb-result.component';
 
 import { OmdbMovieService } from './core/services/omdb.service';
 
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
         FooterComponent,
         HomeComponent,
         OmdbSearchComponent,
+        OmdbResultComponent,
         SortPipe,
         SearchPipe],
     bootstrap: [AppComponent],

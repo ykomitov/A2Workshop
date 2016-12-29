@@ -16,8 +16,7 @@ export class OmdbMovieService {
 
     searchMovies(searchCriteria: any) {
 
-        let searchCriteriaTest = { title: 'godfather', page: '1' };
-        let url = 'http://www.omdbapi.com/?s=' + searchCriteriaTest.title + '&page=' + searchCriteriaTest.page;
+        let url = 'http://www.omdbapi.com/?s=' + searchCriteria.title + '&page=' + searchCriteria.page;
 
         console.log(url);
         return this.http.get(url)
@@ -30,7 +29,7 @@ export class OmdbMovieService {
                             new OmdbMovie(
                                 m.imdbID,
                                 m.Title,
-                                m.Year,                            
+                                m.Year || '',                            
                                 m.Poster || '',
                                 m.Type || '')
                         );
