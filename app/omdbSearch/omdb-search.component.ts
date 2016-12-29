@@ -1,24 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { OmdbMovieService } from './../core/services/omdb.service';
-import { Movie } from './../core/models/movie';
+import { OmdbSearchResult } from './../core/models/omdbSearchResult';
 
 @Component({
     selector: 'mvdb-omdb',
     templateUrl: './omdb-search.component.html'
 })
 
-export class OmdbSearchComponent implements OnInit {
-movies: Movie[];
+export class OmdbSearchComponent implements OnInit, DoCheck {
+    searchResult: OmdbSearchResult;
 
     constructor(private titleService: Title, private movieService: OmdbMovieService) {
         this.titleService.setTitle('OMDb Movies');
     }
 
     ngOnInit() {
-        this.movies = this.movieService.searchMovies({});
+        this.movieService.searchMovies({})
+            .subscribe(res => this.searchResult = res);
+    }
 
-        //console.log(this.movies);
+    ngDoCheck() {
+        if (this.searchResult) {
+            console.log(this.searchResult);
+        }
+    }
+
+    searchOmdb(){
+        console.log('search clicked');
     }
 }

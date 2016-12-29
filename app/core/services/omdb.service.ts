@@ -5,10 +5,12 @@ import {
 } from '@angular/http';
 
 import { Movie } from './../models/movie';
+import { OmdbMovie } from './../models/omdbMovie';
+import { OmdbSearchResult } from './../models/omdbSearchResult';
 
 @Injectable()
 export class OmdbMovieService {
-    movies: Movie[];
+    searchResult: OmdbSearchResult;
 
     constructor(private http: Http) { }
 
@@ -18,39 +20,24 @@ export class OmdbMovieService {
         let url = 'http://www.omdbapi.com/?s=' + searchCriteriaTest.title + '&page=' + searchCriteriaTest.page;
 
         console.log(url);
-        this.http.get(url)
+        return this.http.get(url)
             .map((response) => response.json())
-            .map((movies: any) => {
-                let result: Movie[] = [];
-                if (movies.Response) {
-                    console.log(movies);
-                    movies.Search.forEach((m: any) => {
-                        result.push(
-                            new Movie(
+            .map((res: any) => {
+                let resultMovies: OmdbMovie[] = [];
+                if (res.Response) {
+                    res.Search.forEach((m: any) => {
+                        resultMovies.push(
+                            new OmdbMovie(
                                 m.imdbID,
                                 m.Title,
-                                m.Year,
-                                m.imdbRating,
-                                m.Released,
-                                m.Runtime || '',
-                                m.Genre || '',
-                                m.Director || '',
-                                m.Actors || '',
-                                m.Plot || '',
-                                m.Language || '',
-                                m.Country || '',
+                                m.Year,                            
                                 m.Poster || '',
-                                m.imdbRating || 0,
-                                m.imdbVotes || '',
-                                m.Top250 || 0,
                                 m.Type || '')
                         );
                     });
-                    return result;
-                }
-            })
-            .subscribe(movies => this.movies = movies);
 
-        return this.movies;
+                    return new OmdbSearchResult(resultMovies, res.totalResults, res.Response);
+                }
+            });
     }
 }
