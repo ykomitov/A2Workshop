@@ -8,25 +8,25 @@ import { Title } from '@angular/platform-browser';
 
 export class AppComponent {
 
-    sortObj = {
-        property: 'ImdbRating',
-        type: 'desc',
-        search: ''
-    }
+    // sortObj = {
+    //     property: 'ImdbRating',
+    //     type: 'desc',
+    //     search: ''
+    // }
 
     constructor(private titleService: Title) {
-        this.titleService.setTitle('Movies Workshop');
+        this.titleService.setTitle('Movies Home');
     }
 
-    sortBy(property: any) {
-        this.sortObj.property = property;
-    }
+    // sortBy(property: any) {
+    //     this.sortObj.property = property;
+    // }
 
-    sortType(type: any) {
-        this.sortObj.type = type;
-    }
+    // sortType(type: any) {
+    //     this.sortObj.type = type;
+    // }
 
-    searchForTitle(title: any){
-        this.sortObj.search = title;
-    }
+    // searchForTitle(title: any){
+    //     this.sortObj.search = title;
+    // }
 }
