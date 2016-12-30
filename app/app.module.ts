@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import {FormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { MoviesListComponent } from './movie/movies-list.component';
@@ -21,6 +22,8 @@ import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { SortPipe } from './core/pipes/SortPipe';
 import { SearchPipe } from './core/pipes/SearchPipe';
 
+import { RatingModule } from "./../node_modules/ng2-rating/index.js";
+
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'omdb/:title/:page', component: OmdbSearchComponent },
@@ -33,7 +36,9 @@ const appRoutes: Routes = [
     imports: [
         RouterModule.forRoot(appRoutes),
         BrowserModule,
-        HttpModule
+        HttpModule,
+        RatingModule,
+        FormsModule
     ],
     declarations: [
         AppComponent,
@@ -45,6 +50,7 @@ const appRoutes: Routes = [
         OmdbSearchComponent,
         OmdbResultComponent,
         OmdbDetailComponent,
+
         SortPipe,
         SearchPipe],
     bootstrap: [AppComponent],

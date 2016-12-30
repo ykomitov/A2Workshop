@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+// import { RatingModule } from "./../../node_modules/ng2-rating/index.js";
 
 import { OmdbMovieService } from './../core/services/omdb.service';
 import { Movie } from './../core/models/movie';
