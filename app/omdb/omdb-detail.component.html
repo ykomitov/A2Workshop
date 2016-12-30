@@ -1,0 +1,44 @@
+<div *ngIf="movie" class="col col-md-12">
+    <div class="row" [ngStyle]="{'margin-bottom':'20px'}">
+        <div class="col col-md-12">
+            <h1>{{movie.Title}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <img [src]="movie.Poster" [alt]="movie.Title" height="800px">
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td>Released</td>
+                        <td>{{movie.ReleaseDate | date: 'dd.MM.yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Genre</td>
+                        <td>
+                            <span [ngStyle]="{'margin-right':'5px'}" class="label label-primary" *ngFor="let genre of movie.Genre">{{genre}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Runtime</td>
+                        <td>{{movie.Runtime}} minutes</td>
+                    </tr>
+                    <tr>
+                        <td>Director</td>
+                        <td>{{movie.Director}}</td>
+                    </tr>
+                    <tr>
+                        <td>Actors</td>
+                        <td>
+                            <span [ngStyle]="{'margin-right':'5px'}" class="label label-info" *ngFor="let actor of movie.Actors">{{actor}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Plot</h2>
+            <p>{{movie.Plot}}</p>
+        </div>
+    </div>
+</div>

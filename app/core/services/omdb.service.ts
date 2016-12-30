@@ -18,12 +18,10 @@ export class OmdbMovieService {
 
         let url = 'http://www.omdbapi.com/?s=' + searchCriteria.title + '&page=' + searchCriteria.page;
 
-        console.log(url);
         return this.http.get(url)
             .map((response) => response.json())
             .map((res: any) => {
                 let resultMovies: OmdbMovie[] = [];
-                console.log(res);
                 if (res.Response && res.Response !== 'False') {
                     res.Search.forEach((m: any) => {
                         resultMovies.push(
@@ -39,6 +37,34 @@ export class OmdbMovieService {
                     return new OmdbSearchResult(resultMovies, res.totalResults, res.Response);
                 } else {
                     return new OmdbSearchResult(resultMovies, 0, false);
+                }
+            });
+    }
+
+    getMovieDetails(queryUrl: string) {
+        return this.http.get(queryUrl)
+            .map((response) => response.json())
+            .map((res: any) => {
+                if (res.Response && res.Response !== 'False') {
+                    console.log(res);
+                    return new Movie(
+                        res.imdbID,
+                        res.Title,
+                        res.Year,
+                        res.imdbRating,
+                        res.Released,
+                        res.Runtime,
+                        res.Genre,
+                        res.Director,
+                        res.Actors,
+                        res.Plot,
+                        res.Language,
+                        res.Country,
+                        res.Poster,
+                        res.imdbRating,
+                        res.imdbVotes,
+                        res.Top250,
+                        res.Type)
                 }
             });
     }

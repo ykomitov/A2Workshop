@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { OmdbSearchComponent } from './omdb/omdb-search.component';
 import { OmdbResultComponent } from './omdb/omdb-result.component';
+import { OmdbDetailComponent } from './omdb/omdb-detail.component';
 
 import { OmdbMovieService } from './core/services/omdb.service';
 
@@ -23,6 +24,7 @@ import { SearchPipe } from './core/pipes/SearchPipe';
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'omdb', component: OmdbSearchComponent },
+    { path: 'omdb/:id', component: OmdbDetailComponent },
     { path: '**', redirectTo: '/home' }
 ];
 
@@ -41,6 +43,7 @@ const appRoutes: Routes = [
         HomeComponent,
         OmdbSearchComponent,
         OmdbResultComponent,
+        OmdbDetailComponent,
         SortPipe,
         SearchPipe],
     bootstrap: [AppComponent],

@@ -16,7 +16,7 @@
                     <img [src]="movie.Poster" [alt]="movie.Title" height="100px">
                 </td>
                 <td>
-                    <a href="http://www.omdbapi.com/?i={{movie.ImdbID}}&plot=short&r=json">{{movie.Title}}</a>
+                    <a href="omdb/{{movie.ImdbID}}">{{movie.Title}}</a>
                 </td>
                 <td>
                     {{movie.Year}}
