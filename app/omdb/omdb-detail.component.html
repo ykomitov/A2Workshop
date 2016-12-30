@@ -6,11 +6,15 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <img [src]="movie.Poster" [alt]="movie.Title" height="800px">
+            <img [src]="movie.Poster" [alt]="movie.Title" width="500px">
         </div>
         <div class="col-md-6">
             <table class="table table-striped">
                 <tbody>
+                    <tr>
+                        <td>Year</td>
+                        <td>{{movie.Year}}</td>
+                    </tr>
                     <tr>
                         <td>Released</td>
                         <td>{{movie.ReleaseDate | date: 'dd.MM.yyyy'}}</td>
@@ -34,6 +38,18 @@
                         <td>
                             <span [ngStyle]="{'margin-right':'5px'}" class="label label-info" *ngFor="let actor of movie.Actors">{{actor}}</span>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td>{{movie.Country}}</td>
+                    </tr>
+                    <tr>
+                        <td>Rating</td>
+                        <td>{{movie.Rating}}</td>
+                    </tr>
+                    <tr>
+                        <td>Votes</td>
+                        <td>{{movie.VotesCount}}</td>
                     </tr>
                 </tbody>
             </table>

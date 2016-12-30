@@ -28,9 +28,9 @@
 <div *ngIf="searchResult.response" class="row">
     <div class="col-md-3 col-md-offset-5">
         <ul class="pagination">
-            <li><a class="active" (click)="changePage(searchObj.page-1)">&laquo;</a></li>
+            <li><a class="active" routerLink="/omdb/{{searchObj.title}}/{{searchObj.previousPage}}" (click)="changePage('p' + searchObj.page)">&laquo;</a></li>
             <li><a class="active">Page {{searchObj.page}} of {{totalPages}}</a></li>
-            <li><a class="active" (click)="changePage(searchObj.page+1)">&raquo;</a></li>
+            <li><a class="active" routerLink="/omdb/{{searchObj.title}}/{{searchObj.nextPage}}" (click)="changePage('n' + searchObj.page)">&raquo;</a></li>
         </ul>
     </div>
 </div>

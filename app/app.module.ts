@@ -23,6 +23,7 @@ import { SearchPipe } from './core/pipes/SearchPipe';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
+    { path: 'omdb/:title/:page', component: OmdbSearchComponent },
     { path: 'omdb', component: OmdbSearchComponent },
     { path: 'omdb/:id', component: OmdbDetailComponent },
     { path: '**', redirectTo: '/home' }
