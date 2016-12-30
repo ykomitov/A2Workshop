@@ -45,14 +45,8 @@
                     </tr>
                     <tr>
                         <td>Rating</td>
-                        <td>{{movie.Rating}}</td>
-                    </tr>
-                    <tr>
-                        <td>Rating</td>
                         <td>
-                            <rating [(ngModel)]="movie.Rating" [max]="10" iconClass="fa-star" fullIcon="★" emptyIcon="☆" [readonly]="true"
-                                [disabled]="false" [required]="true" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five']">
-                            </rating>
+                            <rating [(ngModel)]="movie.Rating" [max]="10" [readonly]="true"></rating>
                         </td>
                     </tr>
                     <tr>
