@@ -46,7 +46,6 @@ export class OmdbMovieService {
             .map((response) => response.json())
             .map((res: any) => {
                 if (res.Response && res.Response !== 'False') {
-                    console.log(res);
                     return new Movie(
                         res.imdbID,
                         res.Title,

@@ -3,28 +3,40 @@ import {
     Http,
     Response
 } from '@angular/http';
+
+import { OmdbMovieService } from './omdb.service';
+import { Movie } from './../models/movie';
+
 declare var $: any;
 
 @Injectable()
 export class TopService {
+    movies: Movie[] = [];
+    movie: any;
+    
+    constructor(private http: Http, private omdbService: OmdbMovieService) { }
 
-    constructor(private http: Http) { }
-
-    getTop10() {
-
+    getTop10Ids() {
+        // Go through cors-anywhere, to go around client browser security setting (CORS)
         let url = 'https://cors-anywhere.herokuapp.com/www.imdb.com/chart/top?ref_=ft_250';
 
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData);
-        //.map((response) => response.json());
-    }
+            .map(res => {
+                let body = $('<div/>').append(res.text());
+                let extractedIds = body.find('.titleColumn a').map(function () {
+                    return this.href.split('/')[4];
+                }).get();
 
-    private extractData(res: Response) {
-        let body = $('<div/>').append(res.text()); 
-        console.log(body.find('.titleColumn a').map(function() {
-        return this.href;
-    }).get());
-        return body || 'nothing returned';
+                extractedIds.forEach((id: any) => {
+                    let url = 'https://www.omdbapi.com/?i=' + id + '&plot=short&r=json';
+
+                    return this.omdbService.getMovieDetails(url)
+                        .subscribe(res => {
+                            this.movie = res;
+                            this.movies.push(this.movie);
+                        });
+                })
+            })
+            .map(res => this.movies);
     }
 }
