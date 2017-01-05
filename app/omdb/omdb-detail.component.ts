@@ -23,7 +23,7 @@ export class OmdbDetailComponent implements OnInit {
 
     ngOnInit() {
         let movieId = this.router.url.split('/')[2];
-        let url = 'http://www.omdbapi.com/?i=' + movieId + '&plot=short&r=json';
+        let url = 'https://www.omdbapi.com/?i=' + movieId + '&plot=short&r=json';
 
         this.movieService.getMovieDetails(url)
             .subscribe(res => this.movie = res);

@@ -16,7 +16,7 @@ export class OmdbMovieService {
 
     searchMovies(searchCriteria: any) {
 
-        let url = 'http://www.omdbapi.com/?s=' + searchCriteria.title + '&page=' + searchCriteria.page + '&type=movie';
+        let url = 'https://www.omdbapi.com/?s=' + searchCriteria.title + '&page=' + searchCriteria.page + '&type=movie';
 
         return this.http.get(url)
             .map((response) => response.json())
