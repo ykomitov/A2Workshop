@@ -13,13 +13,15 @@ declare var $: any;
 export class TopService {
     movies: Movie[] = [];
     movie: any;
-    
+
     constructor(private http: Http, private omdbService: OmdbMovieService) { }
 
     getTop10Ids() {
         // Go through cors-anywhere, to go around client browser security setting (CORS)
         let url = 'https://cors-anywhere.herokuapp.com/www.imdb.com/chart/top?ref_=ft_250';
 
+        this.movies = [];
+        
         return this.http.get(url)
             .map(res => {
                 let body = $('<div/>').append(res.text());
