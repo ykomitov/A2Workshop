@@ -9,8 +9,8 @@ import { Title } from '@angular/platform-browser';
 export class HomeComponent {
 
     sortObj = {
-        property: 'ImdbRating',
-        type: 'desc',
+        property: 'ImdbRank',
+        type: 'asc',
         search: ''
     }
 

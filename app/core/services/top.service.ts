@@ -21,7 +21,8 @@ export class TopService {
         let url = 'https://cors-anywhere.herokuapp.com/www.imdb.com/chart/top?ref_=ft_250';
 
         this.movies = [];
-        
+        let rank = 0;
+
         return this.http.get(url)
             .map(res => {
                 let body = $('<div/>').append(res.text());
@@ -34,6 +35,7 @@ export class TopService {
 
                     return this.omdbService.getMovieDetails(url)
                         .subscribe(res => {
+                            res.ImdbRank = ++rank;
                             this.movie = res;
                             this.movies.push(this.movie);
                         });
