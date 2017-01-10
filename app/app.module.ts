@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from "@angular/forms";
 
+import { Ng2PaginationModule } from 'ng2-pagination';
+
 import { AppComponent } from './app.component';
 import { MoviesListComponent } from './movie/movies-list.component';
 import { MovieShortComponent } from './movie/movie-short.component';
@@ -40,6 +42,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         BrowserModule,
         HttpModule,
+        Ng2PaginationModule,
         RatingModule,
         FormsModule
     ],

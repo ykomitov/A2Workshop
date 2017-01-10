@@ -2,6 +2,11 @@
     <ul class="nav nav-pills">
         <li>Total results <span class="badge">{{topMovies.length}}</span></li>
     </ul>
+    <div class="row">
+        <div class="col col-md-4 col-md-offset-4">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -13,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let movie of topMovies">
+            <tr *ngFor="let movie of topMovies | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
                     {{movie.ImdbRank}}
                 </td>
@@ -33,15 +38,8 @@
         </tbody>
     </table>
 </div>
-<!--<div *ngIf="searchResult.response" class="row">
-    <div class="col-md-3 col-md-offset-5">
-        <ul class="pagination">
-            <li><a class="active" routerLink="/omdb/{{searchObj.title}}/{{searchObj.previousPage}}" (click)="changePage('p' + searchObj.page)">&laquo;</a></li>
-            <li><a class="active">Page {{searchObj.page}} of {{totalPages}}</a></li>
-            <li><a class="active" routerLink="/omdb/{{searchObj.title}}/{{searchObj.nextPage}}" (click)="changePage('n' + searchObj.page)">&raquo;</a></li>
-        </ul>
+<div class="row">
+    <div class="col col-md-4 col-md-offset-4">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 </div>
-<div *ngIf="!searchResult.response" class="panel panel-default">
-    <div class="panel-body text-center">No results found!</div>
-</div>-->

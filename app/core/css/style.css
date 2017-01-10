@@ -26,3 +26,19 @@
     float: none;
     margin: 0 auto;
 }
+
+.ng2-pagination li{
+    font-size: 0.9em !important;
+}
+
+.ng2-pagination .current div span{
+    color: white !important;
+}
+
+.ng2-pagination li span, .pagination-previous>a, .pagination-next>a{
+    color: gray !important;
+}
+
+.ng2-pagination li.disabled span{
+    color: #373738 !important;
+}

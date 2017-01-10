@@ -48,7 +48,7 @@ export class TopComponent implements OnInit, DoCheck, OnDestroy {
     ngOnDestroy() {
         if (!localStorage[this.topMoviesKey]) {
             console.log('writing cache');
-            localStorage.setItem(this.topMoviesKey, JSON.stringify(this.topMovies));
+            localStorage.setItem(this.topMoviesKey, JSON.stringify(this.moviesOriginal));
             localStorage.setItem(this.updateCacheDate, new Date().getTime().toString());
         }
     }
