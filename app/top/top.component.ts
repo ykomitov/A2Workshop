@@ -23,6 +23,7 @@ export class TopComponent implements OnInit, DoCheck, OnDestroy {
 
     ngOnInit() {
         this.getMovies();
+        this.topService.getTopPage();
     }
 
     ngDoCheck() {

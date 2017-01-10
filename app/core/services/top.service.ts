@@ -43,4 +43,20 @@ export class TopService {
             })
             .map(res => this.movies);
     }
+
+    getTopPage() {
+        let url = 'https://cors-anywhere.herokuapp.com/www.imdb.com/chart/top?ref_=ft_250';
+        let page: string;
+
+        this.http.get(url)
+            .map(res => res.text())
+            .subscribe(
+            res => { page = res },
+            err => console.log(err),
+            () => this.getTopIds(page));
+    }
+
+    getTopIds(page: string): any {
+        console.log(page.length);
+    }
 }
